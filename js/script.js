@@ -1,57 +1,48 @@
-function Slider(element) {
-  this.el = document.querySelector(element);
+function slider(picture) {
+  this.picture = document.querySelector(picture);
   this.init();
 }
 
-Slider.prototype = {
-  init: function () {
-    this.links = this.el.querySelectorAll("#slider-nav a");
-    this.wrapper = this.el.querySelector("#slider-wrapper");
-    this.navigate();
-  },
-  navigate: function () {
+slider.prototype = {
 
+  init: function() {
+    this.links = this.picture.querySelectorAll("#slider-nav a");
+    this.wrapper = this.picture.querySelector("#slider-wrapper");
+    this.navigation();
+  },
+
+  navigation: function() {
     for (var i = 0; i < this.links.length; ++i) {
       var link = this.links[i];
       this.slide(link);
     }
   },
 
-  animate: function (slide) {
-    var parent = slide.parentNode;
-    var caption = slide.querySelector(".caption");
-    var captions = parent.querySelectorAll(".caption");
-    for (var k = 0; k < captions.length; ++k) {
-      var cap = captions[k];
-      if (cap !== caption) {
-        cap.classList.remove("visible");
-      }
-    }
-    caption.classList.add("visible");
-  },
-
-  slide: function (element) {
+  slide: function(picture) {
     var self = this;
-    element.addEventListener("click", function (e) {
+
+    picture.addEventListener("click", function(e) {
       e.preventDefault();
       var a = this;
       self.setCurrentLink(a);
-      console.log(a)
+
       var index = parseInt(a.getAttribute("data-slide"), 10) + 1;
-      var currentSlide = self.el.querySelector(".slide:nth-child(" + index + ")");
+      var currentSlide = self.picture.querySelector(".slide:nth-child(" + index + ")"); //for each class self.el keep a reference to this 
+
       self.wrapper.style.left = "-" + currentSlide.offsetLeft + "px";
-      self.animate(currentSlide);
     }, false);
   },
-  setCurrentLink: function (link) {
-    var parent = link.parentNode;
+  
+  setCurrentLink: function(linkToEach) {
+    var parent = linkToEach.parentNode; //return parent to element
     var a = parent.querySelectorAll("a");
 
-    link.className = "current";
+    linkToEach.className = "current";
 
     for (var j = 0; j < a.length; ++j) {
       var cur = a[j];
-      if (cur !== link) {
+
+      if (cur !== linkToEach) {
         cur.className = "";
       }
     }
@@ -59,5 +50,5 @@ Slider.prototype = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  var aSlider = new Slider("#slider");
+  var newSlider = new slider("#slider");
 });
