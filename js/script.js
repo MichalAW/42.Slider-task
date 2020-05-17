@@ -3,6 +3,22 @@ function slider(picture) {
   this.init();
 }
 
+document.querySelector('#next').addEventListener('click', function () {
+  next();
+}, false);
+document.querySelector('#previous').addEventListener('click', function () {
+  prev();
+}, false);
+
+next = function () {
+  slider++;
+  slide();
+};
+  prev = function () {
+    slider--;
+    slide();
+}; 
+
 slider.prototype = {
 
   init: function() {
