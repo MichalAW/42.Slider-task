@@ -22,13 +22,13 @@ slider.prototype = {
     }, false)
   },
 
-  next: function () {
-    activeSlide++;
-    slide();
+  next: function(next) {
+    this.activeSlide++;
+    slide(next);
   },
-  prev: function () {
-    activeSlide--;
-    slide();
+  prev: function(prev) {
+    this.activeSlide--;
+    slide(prev);
   },
 
   navigation: function() {
