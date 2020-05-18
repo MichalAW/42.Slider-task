@@ -1,14 +1,9 @@
+'use strict';
+
 function slider(picture) {
   this.picture = document.querySelector(picture);
   this.init();
 }
-
-document.querySelector('#next').addEventListener('click', function () {
-  next();
-}, false);
-document.querySelector('#previous').addEventListener('click', function () {
-  prev();
-}, false);
 
 slider.prototype = {
 
@@ -23,15 +18,24 @@ slider.prototype = {
       var link = this.links[i];
       this.slide(link);
     }
+  },
+
+  arrows: function() {
+    this.next = document.querySelector('#next').addEventListener('click', function () {
+      next();
+    }, false),
+    this.prev = document.querySelector('#previous').addEventListener('click', function () {
+      prev();
+    }, false),
 
     next = function () {
       slider++;
       slide();
-    }; false
+    },
     prev = function () {
       slider--;
       slide();
-    }; false
+    }
   },
 
   slide: function(picture) {
