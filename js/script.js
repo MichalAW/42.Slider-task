@@ -1,74 +1,70 @@
-'use strict';
+'use strict'
 
-function slider(picture) {
-  this.picture = document.querySelector(picture);
-  this.init();
-};
+var slider = document.getElementById('slider'),
+  sliderItems = document.getElementById('slides'),
+  prev = document.getElementById('prev'),
+  next = document.getElementById('next');
 
-slider.prototype = {
+function slide(wrapper, items, prev, next) {
+  var posX1 = 0,
+    posX2 = 0,
+    posInitial,
+    posFinal,
+    threshold = 100,
+    slides = items.getElementsByClassName('slide'),
+    slidesLength = slides.length,
+    slideSize = items.getElementsByClassName('slide')[0].offsetWidth,
+    firstSlide = slides[0],
+    lastSlide = slides[slidesLength - 1],
+    cloneFirst = firstSlide.cloneNode(true),
+    cloneLast = lastSlide.cloneNode(true),
+    index = 0,
+    allowShift = true;
 
-  init: function() {
-    this.links = this.picture.querySelectorAll("#slider-nav a");
-    this.wrapper = this.picture.querySelector("#slider-wrapper");
-    this.navigation();
-  },
+  items.appendChild(cloneFirst);
+  items.insertBefore(cloneLast, firstSlide);
 
-  activeSlide: function () {
-    this.next = document.querySelector('#next').addEventListener('click', function () {
-      next();
-    }, false),
-    this.prev = document.querySelector('#previous').addEventListener('click', function () {
-      prev();
-    }, false)
-  },
+  wrapper.classList.add('loaded');
 
-  next: function(next) {
-    this.activeSlide++;
-    slide(next);
-  },
-  prev: function(prev) {
-    this.activeSlide--;
-    slide(prev);
-  },
+  prev.addEventListener('click', function () { shiftSlide(-1) });
+  next.addEventListener('click', function () { shiftSlide(1) });
 
-  navigation: function() {
-    for (var i = 0; i < this.links.length; ++i) {
-      var link = this.links[i];
-      this.slide(link);
-    }
-  },
+  items.addEventListener('transitionend', checkIndex);
 
-  slide: function(picture) {
-    var self = this;
 
-    picture.addEventListener("click", function(e) {
-      e.preventDefault();
-      var a = this;
-      self.setCurrentLink(a);
+  function shiftSlide(dir, action) {
+    items.classList.add('shifting');
 
-      var index = parseInt(a.getAttribute("data-slide"), 10) + 1;
-      var currentSlide = self.picture.querySelector(".slide:nth-child(" + index + ")"); //for each class self.el keep a reference to this 
+    if (allowShift) {
+      if (!action) { posInitial = items.offsetLeft; }
 
-      self.wrapper.style.left = "-" + currentSlide.offsetLeft + "px";
-    }, false);
-  },
-  
-  setCurrentLink: function(linkToEach) {
-    var parent = linkToEach.parentNode; //return parent to element
-    var a = parent.querySelectorAll("a");
-
-    linkToEach.className = "current";
-
-    for (var j = 0; j < a.length; ++j) {
-      var cur = a[j];
-
-      if (cur !== linkToEach) {
-        cur.className = "";
+      if (dir == 1) {
+        items.style.left = (posInitial - slideSize) + "px";
+        index++;
+      } else if (dir == -1) {
+        items.style.left = (posInitial + slideSize) + "px";
+        index--;
       }
-    }
-  }
-};
+    };
 
-document.addEventListener("DOMContentLoaded", function () {
-  var newSlider = new slider("#slider");
-});
+    allowShift = false;
+  }
+
+  function checkIndex() {
+    items.classList.remove('shifting');
+
+    if (index == -1) {
+      items.style.left = -(slidesLength * slideSize) + "px";
+      index = slidesLength - 1;
+    }
+
+    if (index == slidesLength) {
+      items.style.left = -(1 * slideSize) + "px";
+      index = 0;
+    }
+
+    allowShift = true;
+  }
+}
+
+slide(slider, sliderItems, prev, next);

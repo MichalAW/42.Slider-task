@@ -9,36 +9,31 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-	<div id="slider">
-		<div id="slider-wrapper">
-			<div class="slide">
-				<img class="img-fluid" src="./images/antarctica.jpg" alt="logoImage">
+	<section>				
+		<div id="slider" class="slider">
+			<div class="wrapper">
+				<div id="slides" class="slides">
+					<div class="slide">
+						<img class="img-fluid" src="./images/antarctica.jpg" alt="logoImage">
+					</div>
+					<div class="slide">
+						<img class="img-fluid" src="./images/china.jpg" alt="logoImage">
+					</div>
+					<div class="slide">
+						<img class="img-fluid" src="./images/kanguru.jpg" alt="logoImage">
+					</div>
+					<div class="slide">
+						<img class="img-fluid" src="./images/russia.jpg" alt="logoImage">
+					</div>
+					<div class="slide">
+						<img class="img-fluid" src="./images/sudan.jpg" alt="logoImage">
+					</div>
+				</div>
 			</div>
-			<div class="slide">
-				<img class="img-fluid" src="./images/china.jpg" alt="logoImage">
-			</div>
-			<div class="slide">
-				<img class="img-fluid" src="./images/kanguru.jpg" alt="logoImage">
-			</div>
-			<div class="slide">
-				<img class="img-fluid" src="./images/russia.jpg" alt="logoImage">
-			</div>
-			<div class="slide">
-				<img class="img-fluid" src="./images/sudan.jpg" alt="logoImage">
-			</div>
+			<a id="prev" class="control prev"></a>
+			<a id="next" class="control next"></a>
 		</div>
-		<div id="slider-nav">
-			<a href="#" data-slide="0">1</a>
-			<a href="#" data-slide="1">2</a>
-			<a href="#" data-slide="2">3</a>
-			<a href="#" data-slide="3">4</a>
-			<a href="#" data-slide="4">5</a>
-		</div>
-		<div class="control">
-			<button id="previous">&lt;</button>
-			<button id="next">&gt;</button>
-		</div>
-	</div>
+	</section>
 	<script src="./js/script.js"></script>
 </body>
 </html>

@@ -1,48 +1,85 @@
-#slider {
-	margin: 2em auto;
-	width: 960px;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$slider-width: 400px;
+$slider-height: 300px;
+
+* { box-sizing: border-box; }
+
+.slider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: $slider-width;
+  height: $slider-height;
+  box-shadow: 3px 3px 10px rgba(0,0,0,.2);
+}
+
+.wrapper {
   overflow: hidden;
-  
-  #slider-wrapper {
-    width: 9999px;
-    height: 300px;
-    position: relative;
-    transition: left 400ms linear;
-  }
+  position: relative;
+  width: $slider-width;
+  height: $slider-height;
+  z-index: 1;
+}
+
+.slides {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: -$slider-width;
+  width: 10000px;
+}
+
+.slides.shifting {
+  transition: left .2s ease-out;
 }
 
 .slide {
-	float: left;
-	width: 960px;
-	height: 300px;
-	position: relative;
-	overflow: hidden;
-    img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:285px;
-    width:100%;
+  width: $slider-width;
+  height: $slider-height;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 1s;
+  position: relative;
+  background: #FFCF47;
+  border-radius: 2px;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50px;
+  margin-top: -20px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.prev,
+.next {
+  background-size: 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.prev {
+  background-image: url(https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ChevronLeft-512.png);
+  left: -20px;
+  :active {
+    transform: scale(.8);
   }
 }
 
-#slider-nav {
-	margin: 1em 0;
-  text-align: center;
-  
-    a {
-    width: 2em;
-    height: 2em;
-    border: 1px solid #ccc;
-    text-align: center;
-    text-decoration: none;
-    color: #000;
-    display: inline-block;
-    line-height: 2;
-    margin-right: 0.5em;
-
-      .current {
-      border-color: #000;
-    }
+.next {
+  background-image: url(https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ChevronRight-512.png);
+  right: -20px;
+  :active {
+    transform: scale(.8);
   }
 }
