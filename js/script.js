@@ -3,7 +3,7 @@
 function slider(picture) {
   this.picture = document.querySelector(picture);
   this.init();
-}
+};
 
 slider.prototype = {
 
@@ -13,28 +13,28 @@ slider.prototype = {
     this.navigation();
   },
 
-  navigation: function() {
-    for (var i = 0; i < this.links.length; ++i) {
-      var link = this.links[i];
-      this.slide(link);
-    }
-  },
-
-  arrows: function() {
+  activeSlide: function () {
     this.next = document.querySelector('#next').addEventListener('click', function () {
       next();
     }, false),
     this.prev = document.querySelector('#previous').addEventListener('click', function () {
       prev();
-    }, false),
+    }, false)
+  },
 
-    next = function () {
-      slider++;
-      slide();
-    },
-    prev = function () {
-      slider--;
-      slide();
+  next: function () {
+    activeSlide++;
+    slide();
+  },
+  prev: function () {
+    activeSlide--;
+    slide();
+  },
+
+  navigation: function() {
+    for (var i = 0; i < this.links.length; ++i) {
+      var link = this.links[i];
+      this.slide(link);
     }
   },
 
