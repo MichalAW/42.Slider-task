@@ -10,15 +10,6 @@ document.querySelector('#previous').addEventListener('click', function () {
   prev();
 }, false);
 
-next = function () {
-  slider++;
-  slide();
-};
-  prev = function () {
-    slider--;
-    slide();
-}; 
-
 slider.prototype = {
 
   init: function() {
@@ -32,6 +23,15 @@ slider.prototype = {
       var link = this.links[i];
       this.slide(link);
     }
+
+    next = function () {
+      slider++;
+      slide();
+    }; false
+    prev = function () {
+      slider--;
+      slide();
+    }; false
   },
 
   slide: function(picture) {

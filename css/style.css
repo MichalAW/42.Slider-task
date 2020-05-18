@@ -1,51 +1,13 @@
-#slider {
-  margin: 2em auto;
-  width: 960px;
-  overflow: hidden;
-}
+#slider { margin: 2em auto; width: 960px; overflow: hidden; }
 
-#slider #slider-wrapper {
-  width: 9999px;
-  height: 300px;
-  position: relative;
-  transition: left 400ms linear;
-}
+#slider #slider-wrapper { width: 9999px; height: 300px; position: relative; transition: left 400ms linear; }
 
-.slide {
-  float: left;
-  width: 960px;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-}
+.slide { float: left; width: 960px; height: 300px; position: relative; overflow: hidden; }
 
-.slide img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 285px;
-  width: 100%;
-}
+.slide img { position: absolute; top: 0; left: 0; height: 285px; width: 100%; }
 
-#slider-nav {
-  margin: 1em 0;
-  text-align: center;
-}
+#slider-nav { margin: 1em 0; text-align: center; }
 
-#slider-nav a {
-  width: 2em;
-  height: 2em;
-  border: 1px solid #ccc;
-  text-align: center;
-  text-decoration: none;
-  color: #000;
-  display: inline-block;
-  line-height: 2;
-  margin-right: 0.5em;
-}
+#slider-nav a { width: 2em; height: 2em; border: 1px solid #ccc; text-align: center; text-decoration: none; color: #000; display: inline-block; line-height: 2; margin-right: 0.5em; }
 
-#slider-nav a .current {
-  border-color: #000;
-}
-
-/*# sourceMappingURL=style.css.map */
+#slider-nav a .current { border-color: #000; }
